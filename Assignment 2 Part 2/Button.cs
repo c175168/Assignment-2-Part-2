@@ -30,7 +30,14 @@ namespace Assignment_2_Part_2
             
 
         }
+        // accessor
+        public int GetButtonClick() { return _numclick; }
 
+        public void Click()
+        {
+            _rng = new Random();
+            _numclick = _rng.Next(1, 11);
+        }
 
 
     }
