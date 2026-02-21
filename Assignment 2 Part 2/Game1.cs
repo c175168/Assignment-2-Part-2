@@ -10,7 +10,7 @@ namespace Assignment_2_Part_2
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-
+        private SpriteFont _buttonFont;
         private Texture2D _buttonTexture;
         private Color _buttonColor;
 
@@ -37,10 +37,10 @@ namespace Assignment_2_Part_2
 
 
             _buttonTexture = Content.Load<Texture2D>("buttonSprite");
+            _buttonFont = Content.Load<SpriteFont>("buttonFont");
+            _buttonColor = Color.White;
 
-
-
-            myButton = new Button(10, _buttonTexture , _buttonColor);
+            myButton = new Button(10, _buttonTexture , _buttonColor, _buttonFont);
 
 
             // TODO: use this.Content to load your game content here
@@ -63,6 +63,8 @@ namespace Assignment_2_Part_2
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             myButton.Draw(_spriteBatch);
+
+
 
             // TODO: Add your drawing code here
 

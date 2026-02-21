@@ -22,23 +22,24 @@ namespace Assignment_2_Part_2
         private Texture2D _buttonTexture;
         private Color _buttonColor;
         private bool _pressed;
+        private SpriteFont _buttonFont;
 
         // constructer
-        public Button (int numclickIn, Texture2D buttonTextureIn, Color buttonColorIn)
+        public Button (int numclickIn, Texture2D buttonTextureIn, Color buttonColorIn, SpriteFont buttonFont)
         {
-            
 
             _numclick = numclickIn;
             _buttonTexture = buttonTextureIn;
             _buttonColor = buttonColorIn;
             Click();
+            _buttonFont = buttonFont;
         }
 
         public void Click()
         {
 
             Random _rng = new Random();
-            _numclick = _rng.Next(1, 11);
+            _numclick = _rng.Next(5, 11);
         }
         // accessor 
         public int GetButtonClick() { return _numclick; }
@@ -66,6 +67,15 @@ namespace Assignment_2_Part_2
             spriteBatch.Begin();
 
             spriteBatch.Draw(_buttonTexture, new Vector2(50, 50), _buttonColor);
+
+            if (_numclick > 0)
+            {
+                spriteBatch.DrawString(_buttonFont, "Clicks left: " + _numclick, new Vector2(500, 100), Color.Black);
+            }
+            else
+            {
+                spriteBatch.DrawString(_buttonFont, "you have no clicks left", new Vector2(500, 100), Color.Black);
+            }
 
             spriteBatch.End();
         }
