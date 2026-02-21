@@ -25,10 +25,3 @@
 /processorParam:TextureFormat=Color
 /build:Boulder.png;buttonSprite.png
 
-#begin File.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:File.spritefont;buttonFont.spritefont
-

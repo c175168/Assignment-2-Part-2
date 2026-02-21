@@ -11,10 +11,10 @@ namespace Assignment_2_Part_2
         private SpriteBatch _spriteBatch;
 
 
-        private SpriteFont _buttonFont;
         private Texture2D _buttonTexture;
+        private Color _buttonColor;
 
-        private Button _myButton;
+        private Button myButton;
 
 
         public Game1()
@@ -36,10 +36,13 @@ namespace Assignment_2_Part_2
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
 
-            //_myButton = new Button();
+            _buttonTexture = Content.Load<Texture2D>("buttonSprite");
 
 
-            _buttonFont = Content.Load<SpriteFont>("buttonFont");
+
+            myButton = new Button(10, _buttonTexture , _buttonColor);
+
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -48,6 +51,8 @@ namespace Assignment_2_Part_2
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+
+            myButton.Update();
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -56,6 +61,8 @@ namespace Assignment_2_Part_2
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            myButton.Draw(_spriteBatch);
 
             // TODO: Add your drawing code here
 

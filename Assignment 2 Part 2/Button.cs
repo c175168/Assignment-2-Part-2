@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Color = Microsoft.Xna.Framework.Color;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,29 +17,58 @@ namespace Assignment_2_Part_2
     internal class Button
     {
         // atributes
-        private string _buttonText;
+ 
         private int _numclick;
-        private Random _rng;
-
+        private Texture2D _buttonTexture;
+        private Color _buttonColor;
+        private bool _pressed;
 
         // constructer
-        public Button (string buttonTextIn, int numclickIn)
+        public Button (int numclickIn, Texture2D buttonTextureIn, Color buttonColorIn)
         {
             
-            _buttonText = buttonTextIn;
-            _numclick = numclickIn;
-            
 
+            _numclick = numclickIn;
+            _buttonTexture = buttonTextureIn;
+            _buttonColor = buttonColorIn;
+            Click();
+        }
+
+        public void Click()
+        {
+
+            Random _rng = new Random();
+            _numclick = _rng.Next(1, 11);
         }
         // accessor 
         public int GetButtonClick() { return _numclick; }
 
-        public void Click()
+        public void Update()
         {
-            _rng = new Random();
-            _numclick = _rng.Next(1, 11);
+            Random _rng = new Random();
+            if (_numclick > 0)
+            {
+                if (Mouse.GetState().LeftButton == ButtonState.Pressed && _pressed == true)
+                {
+                    _pressed = false;
+                    _numclick--;
+                    _buttonColor = new Color(_rng.Next(0, 129), _rng.Next(0, 129), _rng.Next(0, 129));
+                }
+                else if (Mouse.GetState().LeftButton == ButtonState.Released && _pressed == false)
+                {
+                    _pressed = true;
+                }
+            }
         }
 
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Begin();
+
+            spriteBatch.Draw(_buttonTexture, new Vector2(50, 50), _buttonColor);
+
+            spriteBatch.End();
+        }
 
     }
 } 
